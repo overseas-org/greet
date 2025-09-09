@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: greet
+  labels:
+    app: greet
+    service: greet
+spec:
+  selector:
+    app: greet
+    service: greet
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: ClusterIP
