@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greet
+  labels:
+    app: greet
+    service: greet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greet
+      service: greet
+  template:
+    metadata:
+      labels:
+        app: greet
+        service: greet
+    spec:
+      volumes:
+      - name: greet-volume
+        persistentVolumeClaim:
+          claimName: greet
+      containers:
+      - name: greet-container
+        image: hhana982/greet:1.<version>
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - mountPath: "None"
+          name: greet-volume
+        env: 
+        - name: name
+          value: "hanna"
